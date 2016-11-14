@@ -6,7 +6,9 @@
 #include <unistd.h>
 #include <string.h>
 
-void doprocessing (int sock);
+
+#include "doprocessing.h"
+
 
 int main( int argc, char *argv[] ) {
    int sockfd, newsockfd, portno, clilen;
@@ -40,7 +42,11 @@ int main( int argc, char *argv[] ) {
       * process will go in sleep mode and will wait
       * for the incoming connection
    */
-   
+  
+
+ 
+   printf("Welcome to this server, my process id is %d\n", getpid());
+
    listen(sockfd,5);
    clilen = sizeof(cli_addr);
    
@@ -63,6 +69,7 @@ int main( int argc, char *argv[] ) {
       if (pid == 0) {
          /* This is the client process */
          close(sockfd);
+         printf("New connection, my process id is %d\n", getpid());
          doprocessing(newsockfd);
          exit(0);
       }
