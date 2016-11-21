@@ -1,14 +1,14 @@
-all: server01 server02 thread
+all: thread1 thread2 thread3
 
-server01: server01.o doprocessing.o
-	gcc -o server01 server01.o doprocessing.o
+thread1: thread1.o
+	gcc -o thread1 thread1.o -lpthread
 
-server02: server02.o doprocessing.o
-	gcc -o server02 server02.o doprocessing.o
+thread2: thread2.o 
+	gcc -o thread2 thread2.o -lpthread
 
 
-thread:	thread.o handler.o
-	gcc -o thread thread.o handler.o -l pthread
+thread3:	thread3.o  handler.o
+	gcc -o thread3 thread3.o handler.o -l pthread
 
 clean:
-	/bin/rm -rf server01 server02 handler *.o
+	/bin/rm -rf thread1 thread2 thread3 *.o
